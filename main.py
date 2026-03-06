@@ -1,3 +1,9 @@
+import logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
+
 from system import (
     Task,
     FileTaskSource,
@@ -8,9 +14,10 @@ from system import (
 )
 from pathlib import Path
 
+logger = logging.getLogger(__name__)
 
 def main() -> None:
-
+    logger.info("Starting programm")
     receiver = TaskReceiver()
 
     sources = [
@@ -29,21 +36,23 @@ def main() -> None:
     create_sample_file(test_file, sample_data)
     receiver.add_source(FileTaskSource(test_file))
 
+    logger.info("Fetching all tasks...")
     tasks = receiver.fetch_all()
     
-    print("=" * 60)
-    print(f"Зарегистрировано источников: {receiver.sources_count}")
-    print(f"Получено задач: {receiver.task_count}")
-    print("-" * 60)
+    logger.info("=" * 60)
+    logger.info(f"Зарегистрировано источников: {receiver.sources_count}")
+    logger.info(f"Получено задач: {receiver.task_count}")
+    logger.info("-" * 60)
     
     for task in tasks:
-        print(f"  • ID: {task.id}, Payload: {task.payload}")
+        logger.info(f"  • ID: {task.id}, Payload: {task.payload}")
     
-    print("-" * 60)
-    print("Демонстрация завершена")
-    print("=" * 60)
+    logger.info("-" * 60)
+    logger.info("Демонстрация завершена")
+    logger.info("=" * 60)
 
     test_file.unlink()
+    logger.debug(f"Temporary file removed: {test_file}")
 
 
 if __name__ == "__main__":
