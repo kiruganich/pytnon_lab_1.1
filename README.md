@@ -12,6 +12,7 @@
 - Три типа источников: файл, генератор, API-заглушка
 - Расширяемость: новые источники без изменения существующего кода
 - Покрытие тестами
+- Логирование
 
 
 ## Структура проекта
@@ -41,21 +42,29 @@ pytest tests.py
 
 ## Пример работы
 ```
-============================================================
-Зарегистрировано источников: 3
-Получено задач: 8
-------------------------------------------------------------
-  • ID: gen_0, Payload: {'step': 0, 'generated': True, 'source': 'generator'}
-  • ID: gen_1, Payload: {'step': 1, 'generated': True, 'source': 'generator'}
-  • ID: gen_2, Payload: {'step': 2, 'generated': True, 'source': 'generator'}
-  • ID: api_1, Payload: {'source': 'stub', 'priority': 'high'}
-  • ID: api_2, Payload: {'source': 'stub', 'priority': 'low'}
-  • ID: api_3, Payload: {'source': 'stub', 'priority': 'medium'}
-  • ID: file_1, Payload: {'source': 'json', 'priority': 'high'}
-  • ID: file_2, Payload: {'source': 'json', 'priority': 'low'}
-------------------------------------------------------------
-Демонстрация завершена
-============================================================
+2026-03-06 23:13:54,783 - INFO - Starting programm
+2026-03-06 23:13:54,783 - INFO - Source GeneratorTaskSource added
+2026-03-06 23:13:54,783 - INFO - Source APIStubTaskSource added
+2026-03-06 23:13:54,784 - INFO - Sample file created: demo_tasks.json
+2026-03-06 23:13:54,784 - INFO - Source FileTaskSource added
+2026-03-06 23:13:54,784 - INFO - Fetching all tasks...
+2026-03-06 23:13:54,784 - INFO - Finished generating 3 tasks
+2026-03-06 23:13:54,786 - INFO - Finished reading 2 tasks from demo_tasks.json
+2026-03-06 23:13:54,786 - INFO - ============================================================
+2026-03-06 23:13:54,786 - INFO - Зарегистрировано источников: 3
+2026-03-06 23:13:54,786 - INFO - Получено задач: 8
+2026-03-06 23:13:54,786 - INFO - ------------------------------------------------------------
+2026-03-06 23:13:54,786 - INFO -   • ID: gen_0, Payload: {'step': 0, 'generated': True, 'source': 'generator'}
+2026-03-06 23:13:54,786 - INFO -   • ID: gen_1, Payload: {'step': 1, 'generated': True, 'source': 'generator'}
+2026-03-06 23:13:54,786 - INFO -   • ID: gen_2, Payload: {'step': 2, 'generated': True, 'source': 'generator'}
+2026-03-06 23:13:54,787 - INFO -   • ID: api_1, Payload: {'source': 'stub', 'priority': 'high'}
+2026-03-06 23:13:54,787 - INFO -   • ID: api_2, Payload: {'source': 'stub', 'priority': 'low'}
+2026-03-06 23:13:54,787 - INFO -   • ID: api_3, Payload: {'source': 'stub', 'priority': 'medium'}
+2026-03-06 23:13:54,788 - INFO -   • ID: file_1, Payload: {'source': 'json', 'priority': 'high'}
+2026-03-06 23:13:54,788 - INFO -   • ID: file_2, Payload: {'source': 'json', 'priority': 'low'}
+2026-03-06 23:13:54,788 - INFO - ------------------------------------------------------------
+2026-03-06 23:13:54,788 - INFO - Демонстрация завершена
+2026-03-06 23:13:54,788 - INFO - ============================================================
 ```
 ## Зависимости
 Python 3.10+
