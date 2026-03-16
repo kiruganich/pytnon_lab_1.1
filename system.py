@@ -15,7 +15,7 @@ class Task:
 
     """
     id: str | int
-    payload: dict = field(default_factory=dict)
+    payload: Any
     
     def __post_init__(self) -> None:
         """
