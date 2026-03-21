@@ -14,7 +14,7 @@ class Task:
     Единица работы в платформе обработки задач.
 
     """
-    id: Any = {}
+    id: Any 
     payload: Any
     
     def __post_init__(self) -> None:
@@ -101,7 +101,7 @@ class APIStubTaskSource:
     def __init__(self, mock_tasks: list[dict] | None = None) -> None:
         self.mock_tasks = mock_tasks or self.DEFAULT_TASKS.copy()
         logger.debug(f"APIStubTaskSource initialized: {len(self.mock_tasks)} tasks")
-    logger.debug("GReturning tasks from API stub")
+    logger.debug("Returning tasks from API stub")
     def get_tasks(self) -> Iterator[Task]:
         for item in self.mock_tasks:
             yield Task(
