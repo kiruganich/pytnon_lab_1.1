@@ -102,7 +102,7 @@ class TestTaskReceiver:
         receiver.add_source(GeneratorTaskSource(count=3))
         receiver.add_source(APIStubTaskSource())
         tasks = receiver.fetch_all()
-        assert receiver.task_count == 6  # 3 + 3
+        assert receiver.task_count == 6
 
 
 class TestExtensibility:

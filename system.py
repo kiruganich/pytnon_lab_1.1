@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import Protocol, Iterator, runtime_checkable, Any
 from pathlib import Path
 import json
@@ -14,7 +14,7 @@ class Task:
     Единица работы в платформе обработки задач.
 
     """
-    id: str | int
+    id: Any = {}
     payload: Any
     
     def __post_init__(self) -> None:
