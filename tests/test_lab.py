@@ -4,15 +4,11 @@ import tempfile
 from pathlib import Path
 from typing import Iterator
 
-from system import (
-    Task,
-    TaskSource,
-    FileTaskSource,
-    GeneratorTaskSource,
-    APIStubTaskSource,
-    TaskReceiver,
-    create_sample_file,
-)
+from src.exceptions import TaskSourceValidationError, TaskIDError
+from src.system import TaskReceiver
+from src.task import Task
+from src.sources import TaskSource, FileTaskSource, GeneratorTaskSource, APIStubTaskSource
+
 
 
 
@@ -25,7 +21,7 @@ class TestTask:
         assert task.payload == {"key": "value"}
     
     def test_task_empty_id_raises_error(self):
-        with pytest.raises(ValueError):
+        with pytest.raises(TaskIDError):
             Task(id="", payload={})
 
 
@@ -94,7 +90,7 @@ class TestTaskReceiver:
         class BadSource:
             pass
         
-        with pytest.raises(TypeError):
+        with pytest.raises(TaskSourceValidationError):
             receiver.add_source(BadSource())
     
     def test_receiver_fetch_all(self):

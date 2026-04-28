@@ -4,14 +4,8 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
 
-from system import (
-    Task,
-    FileTaskSource,
-    GeneratorTaskSource,
-    APIStubTaskSource,
-    TaskReceiver,
-    create_sample_file,
-)
+from src.sources import FileTaskSource, GeneratorTaskSource, APIStubTaskSource
+from src.system import TaskReceiver, create_sample_file
 from pathlib import Path
 
 logger = logging.getLogger(__name__)

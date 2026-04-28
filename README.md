@@ -38,7 +38,7 @@ pip install -r requirements.txt
 ### 3. Запуск демонстрации
 python main.py
 ### 4. Запуск тестов
-pytest tests.py
+python -m pytest
 
 ## Пример работы
 ```
