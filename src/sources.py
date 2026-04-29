@@ -32,7 +32,7 @@ class FileTaskSource:
     def get_tasks(self) -> Iterator[Task]:
         if not self.filepath.exists():
             logger.warning(f"File is not found {self.filepath}")
-            return
+            return iter([])
         logger.debug(f"Reading {self.filepath}")
         with open(self.filepath, "r", encoding="utf-8") as f:
             data = json.load(f)
